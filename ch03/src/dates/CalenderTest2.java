@@ -32,6 +32,10 @@ public class CalenderTest2 {
 		// 일로 환산
 		betweenTime = betweenTime / (24*60*60*1000);
 		System.out.println(betweenTime + "일 지났습니다");
+		
+		// 현재 까지의 시간
+		System.out.println(System.currentTimeMillis());
 	}
-
 }
+
+
