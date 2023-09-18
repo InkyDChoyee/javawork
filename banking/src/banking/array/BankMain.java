@@ -20,6 +20,7 @@ public class BankMain {
 			
 			// 메뉴 선택
 			int selectNo = Integer.parseInt(scanner.nextLine());
+					//integer.parseInt(scanner.nextLine());
 			
 			if(selectNo == 1) {
 				creatAccount();    // 계좌 생성
@@ -54,6 +55,7 @@ public class BankMain {
 			
 			System.out.print("초기 입금액 > ");
 			int balance = Integer.parseInt(scanner.nextLine());
+					
 			
 		//accounts[0] = new Account(ano, owner, balance);   = 연습데이터
 		for(int i = 0; i < accounts.length; i++) {

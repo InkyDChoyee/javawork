@@ -76,7 +76,7 @@ public class BankMain2 {
 	// 계좌 목록
 	private static void getAccountList() {
 		System.out.println("-----------------------------------");
-		System.out.println("계좌 생성");
+		System.out.println("계좌 목록");
 		System.out.println("-----------------------------------");
 		
 		for(int i = 0; i<accounts.length; i++) {
@@ -106,7 +106,7 @@ public class BankMain2 {
 				System.out.println("결과 : 정상 처리되었습니다");
 			}else {
 				System.out.println("결과: 계좌가 없습니다");
-			}
+			}break;
 		}
 	}
 	

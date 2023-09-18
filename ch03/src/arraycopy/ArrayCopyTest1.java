@@ -7,6 +7,8 @@ public class ArrayCopyTest1 {
 		int[] arr1 = {10, 20, 30, 40};
 		int[] arr2 = new int[4];
 		
+		//List<String> s = new ArrayList<>() {};
+		
 		// 복사 방법 1. new int[]
 		for(int i = 0; i < arr1.length; i++) {
 			arr2[i] = arr1[i];

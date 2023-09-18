@@ -2,7 +2,7 @@ package data;
 
 public class Var2 {
 
-	public static void main(String[] args) {
+	public static void main(String[] as) {
 		// 1inch = 2.54cm 입니다
 		// 실수형 자료형 = double, float 사용
 		double inchTocm = 2.54;
