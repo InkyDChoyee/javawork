@@ -1,21 +1,25 @@
-package interfaceex.remocon;
+package interfaceex.remocon2;
 
-// RemoteControl 인터페이스를 구현한 Television 클래스
-public class Television implements RemoteControl{
-	
-	// 필드
+import interfaceex.remocon.RemoteControl;
+
+public class SmartTV implements RemoteControl, Searchable{
+
 	private int volume;
 
 	@Override
+	public void search(String url) {
+		System.out.println(url + "을 검색합니다");
+	}
+
+	
+	@Override
 	public void turnOn() {
 		System.out.println("TV를 켭니다");
-		
 	}
 
 	@Override
 	public void turnOff() {
 		System.out.println("TV를 끕니다");
-		
 	}
 
 	@Override
@@ -30,5 +34,5 @@ public class Television implements RemoteControl{
 		}
 		System.out.println("현재 TV 볼륨 : " + this.volume);
 	}
-
+		
 }
