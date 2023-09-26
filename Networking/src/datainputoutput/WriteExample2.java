@@ -10,7 +10,7 @@ public class WriteExample2 {
 		
 		try {
 			// 출력 스트림 객체 생성
-			OutputStream os = new FileOutputStream("C:/File/test2.db");
+			OutputStream os = new FileOutputStream("C:/File/test2.db");  // 절대 경로
 		 
 			// 배열로 데이터 생성
 			byte [] array = {10, 20, 30, 40, 50};
