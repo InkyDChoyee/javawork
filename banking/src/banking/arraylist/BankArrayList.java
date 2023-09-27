@@ -3,6 +3,7 @@ package banking.arraylist;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import banking.array.Account;
 
@@ -18,9 +19,9 @@ public class BankArrayList {
 
 		while(sw) {
 			try {
-				System.out.println("==============================================");
-				System.out.println("1.계좌 생성 | 2.계좌 목록 | 3.예금 | 4.출금 | 5.종료");
-				System.out.println("==============================================");
+				System.out.println("=======================================================");
+				System.out.println("1.계좌 생성 | 2.계좌 목록 | 3.예금 | 4.출금 | 5.계좌 삭제 | 6.종료");
+				System.out.println("=======================================================");
 
 				System.out.print("선택 > ");
 
@@ -36,6 +37,8 @@ public class BankArrayList {
 				}else if(selectNo == 4) {
 					withdraw();   // 출금
 				}else if(selectNo == 5) {
+					removeAccount();  // 계좌 삭제
+				}else if(selectNo == 6) {
 					sw = false;     //종료
 				}else {
 					System.out.println("지원되지 않는 기능입니다. 다시 입력해주세요");
@@ -55,23 +58,32 @@ public class BankArrayList {
 		System.out.println("-----------------------------------");
 
 		while(true) {
-			System.out.print("계좌 번호 > ");
+
+			System.out.println("계좌 번호(형식-숫자만:00-00-000 > ");
 			String ano = scanner.nextLine();
-			// 중복계좌가 있는지 체킹
-			if(findAccount(ano) != null) {  // 중복계좌가 있으면
-				System.out.println("중복계좌입니다, 다시 입력해주세요");
-			}else {  // 중복 계좌가 없으면
-				System.out.print("계좌주 > ");
-				String owner = scanner.nextLine();
 
-				System.out.print("초기 입금액 > ");
-				int balance = Integer.parseInt(scanner.nextLine());
+			String regExp = "\\d{2}-\\d{2}-\\d{3}";
+			boolean result = Pattern.matches(regExp, ano);
 
-				// 입력받은 내용을 매개변수로 계좌 생성함
-				Account newAccount = new Account(ano, owner, balance);
-				accountList.add(newAccount);   // 리스트에 저장
-				System.out.println("결과 : 계좌가 생성되었습니다");
-				break;
+			if(result) {
+				// 중복계좌가 있는지 체킹
+				if(findAccount(ano) != null) {  // 중복계좌가 있으면
+					System.out.println("중복계좌입니다, 다시 입력해주세요");
+				}else {  // 중복 계좌가 없으면
+					System.out.print("계좌주 > ");
+					String owner = scanner.nextLine();
+
+					System.out.print("초기 입금액 > ");
+					int balance = Integer.parseInt(scanner.nextLine());
+
+					// 입력받은 내용을 매개변수로 계좌 생성함
+					Account newAccount = new Account(ano, owner, balance);
+					accountList.add(newAccount);   // 리스트에 저장
+					System.out.println("결과 : 계좌가 생성되었습니다");
+					break;
+				}
+			}else {
+				System.out.println("계좌번호 형식이 아닙니다. 다시 입력해 주세요");
 			}
 		}//while끝
 	}// creatAccount() 끝
@@ -91,7 +103,7 @@ public class BankArrayList {
 
 		}
 	}// getAccountList() 끝
-	
+
 	private static void deposit() {
 		System.out.println("-----------------------------------");
 		System.out.println("입금");
@@ -103,11 +115,11 @@ public class BankArrayList {
 
 			if(findAccount(ano) != null) {
 				Account account = findAccount(ano);
-				
+
 				System.out.print("입금액 > ");
 				int money = Integer.parseInt(scanner.nextLine());
-				
-				
+
+
 				account.setBalance(account.getBalance() + money);
 				System.out.println("결과 : 정상 처리되었습니다");
 				break; // while문 빠져나옴
@@ -116,19 +128,19 @@ public class BankArrayList {
 			}
 		}// while 끝
 	}// deposit() 끝
-	
+
 	private static void withdraw() {
 		System.out.println("-----------------------------------");
 		System.out.println("출금");
 		System.out.println("-----------------------------------");
-		
+
 		while(true) { // 계좌번호 재입력
 			System.out.print("계좌 번호 > ");
 			String ano = scanner.nextLine();
 
 			if(findAccount(ano)!=null) {
 				Account account = findAccount(ano);
-				
+
 				while(true) { // 출금액 재입력
 					System.out.print("출금액 > ");
 					int money = Integer.parseInt(scanner.nextLine());
@@ -150,7 +162,28 @@ public class BankArrayList {
 			}
 		}//바깥쪽 while끝
 	}
-	
+
+	private static void removeAccount() {
+		System.out.println("-----------------------------------");
+		System.out.println("계좌 삭제");
+		System.out.println("-----------------------------------");
+
+		while(true) {
+			System.out.print("계좌 번호 > ");
+			String ano = scanner.nextLine();
+
+			if(findAccount(ano)!=null) {
+				Account account = findAccount(ano);
+
+				while(true) { 
+				}
+					
+			}else {
+				System.out.println("결과: 계좌가 없습니다. 다시 입력해주세요");
+
+			}
+		}
+	}
 
 	private static Account findAccount(String ano) {
 		Account account = null;

@@ -46,7 +46,7 @@ public class DataInputOutputStreamTest {
 		try(InputStream is = new FileInputStream("./data.db");
 			DataInputStream dis = new DataInputStream(is);	){
 			
-			// 기본 타입 자료 읽기
+			// 기본 타입 자료 읽기 => 파일에 쓴 순서대로 읽어야 한다
 			for(int i = 0; i < 3; i++) {   // 데이터 수만큼 반복
 				int num = dis.readInt();       // 정수형 자료
 				String name = dis.readUTF();  // 문자열 자료
