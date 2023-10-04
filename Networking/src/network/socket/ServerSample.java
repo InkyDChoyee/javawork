@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+
+// TCP(Transmission Control Protocol) 네트워킹
 public class ServerSample {
 	
 	// 서버 소켓 객체 선언
@@ -53,16 +55,16 @@ public class ServerSample {
 						// IP 주소 알아내기
 						InetSocketAddress isa = (InetSocketAddress) socket.getRemoteSocketAddress();
 						String clientIp = isa.getHostString();
-						System.out.println("[서버]" + clientIp + "의 연결 요청을 수락함");
+						System.out.println("[서버] " + clientIp + "의 연결 요청을 수락함");
 						// 웹 브라우저에서 http://127.0.0.1:50001/ 입력 - 콘솔에서 확인
 						
 						socket.close();
-						System.out.println("[서버]" + clientIp + "의 연결을 끊음");
+						System.out.println("[서버] " + clientIp + "의 연결을 끊음");
 					}
 					
 				} catch (IOException e) {
 					//e.printStackTrace();
-					System.out.println("[서버]" + e.toString() + "의 연결을 끊음");
+					System.out.println("[서버] " + e.toString() + "의 연결을 끊음");
 				}
 			}
 		};
