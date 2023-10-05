@@ -41,7 +41,7 @@ public class ChatServer {
 							// 연결 수락 및 소켓 객체 생성
 							Socket socket = serverSocket.accept();
 							// 소켓 클라이언트 객체 생성
-							SocketClient sc = new SocketClient(ChatServer.this,socket);
+							new SocketClient(ChatServer.this,socket);
 						}
 					}catch (IOException e) {  // 블럭 비움
 						//e.printStackTrace();
@@ -96,7 +96,9 @@ public class ChatServer {
 		// 반복자 필요
 		Collection<SocketClient> socketClient = chatRoom.values();
 		for(SocketClient sc : socketClient) {
-			sc.send(json);   // 문자열 보내기
+			// 발신자와 동일하면 보내지 말고 다른 클라이언트에게 보냄
+			if(sc != sender)
+				sc.send(json);   // 문자열 보내기
 		}
 		
 	}

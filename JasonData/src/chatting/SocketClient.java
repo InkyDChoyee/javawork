@@ -30,9 +30,8 @@ public class SocketClient {
 			this.clientIp = isa.getHostString();
 			receive();
 			
-			
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
@@ -40,8 +39,9 @@ public class SocketClient {
 	// 데이터 받기(수신) : JSON 받기
 	public void receive() {
 		chatServer.threadPool.execute(() -> {   // 람다식 
-			while(true) {
-				try {
+
+			try {
+				while(true) {
 					String receiveJson = dis.readUTF();
 					
 					// JSON 파싱
@@ -49,7 +49,7 @@ public class SocketClient {
 					// {"command":"incomming", "data":"chatName"}
 					// {"command":"message", "data":"XXX(메시지)"}
 					JSONObject jsonObject = new JSONObject(receiveJson); 
-					
+
 					String command = jsonObject.getString("command");
 					switch(command) {
 					case "incomming":
@@ -62,12 +62,13 @@ public class SocketClient {
 						chatServer.sendToAll(this, message);
 						break;
 					}
+					}
 				} catch (IOException e) {
 					// 클라이언트 소켓이 종료되면 연결이 끊김
 					chatServer.sendToAll(this, "나가셨습니다");
 					chatServer.removeSocketClient(this); // 서버의 소켓 클라이언트 삭제
 				}
-			}
+
 		});
 	} // receive 끝
 	
