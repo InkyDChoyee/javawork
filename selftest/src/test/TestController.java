@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TestController {
-	// 941011-1020111
 
 	public void test1() {
 		Scanner sc = new Scanner(System.in);

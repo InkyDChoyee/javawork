@@ -20,9 +20,9 @@ public class BankArrayList {
 
 			while(sw) {
 				try {
-					System.out.println("=======================================================");
-					System.out.println("1.계좌 생성 | 2.계좌 목록 | 3.예금 | 4.출금 | 5.계좌 삭제 | 6.종료");
-					System.out.println("=======================================================");
+					System.out.println("===================================================================");
+					System.out.println("1.계좌 생성 | 2.계좌 목록 | 3.예금 | 4.출금 | 5.계좌 삭제 | 6. 계좌 검색 | 7.종료");
+					System.out.println("===================================================================");
 
 					System.out.print("선택 > ");
 
@@ -40,6 +40,8 @@ public class BankArrayList {
 					}else if(selectNo == 5) {
 						removeAccount();  // 계좌 삭제
 					}else if(selectNo == 6) {
+						selectAccount();  // 계좌 검색
+					}else if(selectNo == 7) {
 						sw = false;     //종료
 					}else {
 						System.out.println("지원되지 않는 기능입니다. 다시 입력해주세요");
@@ -56,7 +58,7 @@ public class BankArrayList {
 		// 계좌 생성 (creatAccount)
 		private static void creatAccount() {
 			System.out.println("-----------------------------------");
-			System.out.println("계좌 생성");
+			System.out.println("             계좌 생성");
 			System.out.println("-----------------------------------");
 
 			while(true) {
@@ -93,7 +95,7 @@ public class BankArrayList {
 		// 계좌 목록 (getAccountList)
 		private static void getAccountList(){
 			System.out.println("-----------------------------------");
-			System.out.println("계좌 목록");
+			System.out.println("             계좌 목록");
 			System.out.println("-----------------------------------");
 
 			// 계좌목록 조회
@@ -110,7 +112,7 @@ public class BankArrayList {
 		// 입금 (deposit)
 		private static void deposit() {
 			System.out.println("-----------------------------------");
-			System.out.println("입금");
+			System.out.println("               입금");
 			System.out.println("-----------------------------------");
 
 			while(true) {
@@ -144,7 +146,7 @@ public class BankArrayList {
 		// 출급 (withdraw)
 		private static void withdraw() {
 			System.out.println("-----------------------------------");
-			System.out.println("출금");
+			System.out.println("              출금");
 			System.out.println("-----------------------------------");
 
 			while(true) { // 계좌번호 재입력
@@ -188,7 +190,7 @@ public class BankArrayList {
 		// 계좌 삭제 (removeAccount)
 		private static void removeAccount() {
 			System.out.println("-----------------------------------");
-			System.out.println("계좌 삭제");
+			System.out.println("            계좌 삭제");
 			System.out.println("-----------------------------------");
 
 			while(true) {
@@ -199,7 +201,7 @@ public class BankArrayList {
 				boolean result = Pattern.matches(regExp, ano);
 
 				if(result) {
-					if(findAccount(ano) !=null) {
+					if(findAccount(ano) != null) {
 						accountList.remove(findAccount(ano));
 						System.out.println("결과 : 계좌가 삭제되었습니다");
 						break;
@@ -212,6 +214,39 @@ public class BankArrayList {
 			}
 		}
 
+		// 특정 계좌 검색
+		private static void selectAccount() {
+			System.out.println("-----------------------------------");
+			System.out.println("            계좌 검색");
+			System.out.println("-----------------------------------");
+
+			while(true) {
+				System.out.println("계좌 번호(형식-숫자만:00-00-000 > ");
+				String ano = scanner.nextLine();
+
+				String regExp = "\\d{2}-\\d{2}-\\d{3}";
+				boolean result = Pattern.matches(regExp, ano);
+
+				if(result) {
+					if(findAccount(ano) != null) {
+						System.out.println("------------------ 계좌 정보를 가져왔습니다 ------------------");
+						System.out.println("계좌번호 : " + findAccount(ano).getAno() + "  |  "
+										+ "계좌주 : " + findAccount(ano).getOwner() + "  |  "
+										+ "잔고 : " + findAccount(ano).getBalance());
+						System.out.println("-------------------------------------------------------");
+						break;
+					}else {
+						System.out.println("결과: 없는 계좌입니다. 다시 입력해주세요");
+					}
+				}else {
+					System.out.println("계좌번호 형식이 아닙니다. 다시 입력해 주세요");
+				}
+			}
+			
+			
+		}
+		
+		
 		// 계좌 찾기 (findAccount)
 		private static Account findAccount(String ano) {
 			Account account = null;
