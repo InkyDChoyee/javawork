@@ -32,8 +32,6 @@ public class EchoServer {
 			if(key.toLowerCase().equals("q"))
 				break;
 		}
-
-
 		scanner.close();
 
 		// TCP서버 종료 
