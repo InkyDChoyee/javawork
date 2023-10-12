@@ -49,18 +49,27 @@ public class UserSelectAllTest {
 				
 			} // while 끝
 			
-			for(int i = 0; i < userList.size(); i++) {
-				User user = userList.get(i);
-				System.out.println("-----------user" + (i+1) + "------------");
+//			for(int i = 0; i < userList.size(); i++) {
+//				User user = userList.get(i);
+//				System.out.println("-----------user" + (i+1) + "------------");
+//				System.out.println("userID: " + user.getUserId());
+//				System.out.println("userName: " + user.getUserName());
+//				System.out.println("userPW: " + user.getUserPassword());
+//				System.out.println("userAge: " + user.getUserAge());
+//				System.out.println("userEmail: " + user.getUserEmail());
+//				System.out.println("----------------------------");
+//				System.out.println(" ");
+//			}
+			
+			for(User user : userList) {
 				System.out.println("userID: " + user.getUserId());
 				System.out.println("userName: " + user.getUserName());
 				System.out.println("userPW: " + user.getUserPassword());
 				System.out.println("userAge: " + user.getUserAge());
 				System.out.println("userEmail: " + user.getUserEmail());
-				System.out.println("----------------------------");
+				System.out.println("=============================");
 				System.out.println(" ");
 			}
-			
 			
 			// 스택구조이므로 종료 순서는 들어간 순서의 역순으로 닫아준다(rs -> pstmt -> conn)
 			rs.close();
