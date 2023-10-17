@@ -1,4 +1,4 @@
-package banking.domain;
+package banking;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -241,28 +241,20 @@ public class AccountDAO {
 
 			if(result) {
 				if(findAccount(ano) != null) {
-					// 확인, 취소 메뉴 만들기
-					System.out.println("1.OK | 2. Cancel");
-					String menuNo = scanner.nextLine();
-					if(menuNo.equals("1")) {
-						// db처리
-						try {
-							conn = JDBCUtil.getConnection();
-							String sql = "DELETE FROM account WHERE ano = ?";
-
-							pstmt = conn.prepareStatement(sql);
-							pstmt.setString(1, ano);
-							// sql 실행
-							pstmt.executeUpdate();
-							System.out.println("결과 : [" + ano + "] 계좌가 삭제되었습니다");
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}finally {
-							JDBCUtil.close(conn, pstmt);
-						}
-					}else {
-						System.out.println("삭제를 취소합니다");
+					// db처리
+					try {
+						conn = JDBCUtil.getConnection();
+						String sql = "DELETE FROM account WHERE ano = ?";
+						
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, ano);
+						// sql 실행
+						pstmt.executeUpdate();
+						System.out.println("결과 : [" + ano + "] 계좌가 삭제되었습니다");
+					} catch (SQLException e) {
+						e.printStackTrace();
 					}
+					
 					break;
 				}else {
 					System.out.println("결과: 없는 계좌입니다. 다시 입력해주세요");
@@ -290,8 +282,8 @@ public class AccountDAO {
 				if(findAccount(ano) != null) {
 					System.out.println("------------------ 계좌 정보를 가져왔습니다 ------------------");
 					System.out.println("계좌번호 : " + findAccount(ano).getAno() + "  |  "
-									  + "계좌주 : " + findAccount(ano).getOwner() + "  |  "
-										+ "잔고 : " + findAccount(ano).getBalance());
+							+ "계좌주 : " + findAccount(ano).getOwner() + "  |  "
+							+ "잔고 : " + findAccount(ano).getBalance());
 					System.out.println("-------------------------------------------------------");
 					break;
 				}else {
