@@ -72,13 +72,8 @@ public class PlusCalcEvent {
 		};
 		resetBtn.addActionListener(listener2);
 		
-		
-		
 		// 디스플레이 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-
 	}
-
 }
