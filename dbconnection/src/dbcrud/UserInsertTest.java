@@ -23,9 +23,9 @@ public class UserInsertTest {
 			
 			// db 처리 작업
 			// 매개변수화된 sql문 작성 - 동적 바인딩
-			String sql = "INSERT INTO users(userid, username, userpassword, userage, useremail) "
-					     + "VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO users(userid, username, userpassword, userage, useremail) VALUES (?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
+			
 			// '?' 값 지정
 			pstmt.setString(1, "sky123");
 			pstmt.setString(2, "최하늘");
