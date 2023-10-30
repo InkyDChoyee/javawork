@@ -16,10 +16,10 @@ public class Exchange extends JFrame implements ActionListener{
 	// 필드
 	String[] currency = {"달러", "위안", "유로", "엔"};
 	// 환율 상수 선언
-	static final float USD = 1357.50F;
-	static final float CNW = 185.58F;
-	static final float EUR = 1432.43F;
-	static final float JPY = 9.04F;
+	static final float USD = 1351.50F;
+	static final float CNW = 184.38F;
+	static final float EUR = 1426.91F;
+	static final float JPY = 9.03F;
 
 	JPanel pane1;
 	JPanel pane2;
